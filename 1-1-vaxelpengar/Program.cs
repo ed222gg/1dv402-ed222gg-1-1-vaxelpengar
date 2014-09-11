@@ -4,6 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace _1_1_vaxelpengar
 {
     class Program
@@ -18,16 +24,68 @@ namespace _1_1_vaxelpengar
             uint change;
 
             while (true)
-                //Värden från tangentbordet läses in.  
-                Console.Write("Ange totalsumma     : ");
-            totalSum = double.Parse(Console.ReadLine());
+            {
+                try
+                {
+                    //Värden från tangentbordet läses in.  
+                    Console.Write("Ange totalsumma     : ");
+                    totalSum = double.Parse(Console.ReadLine());
+                   
+                    if(totalSum <1)
+                    {
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.WriteLine("\nTotalsumman är för liten. Köpet kunde inte genomföras.");
+                        Console.ResetColor();
+                        return;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                catch
+                {
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.WriteLine("\nFel! erhållet belopp felaktigt.");
+                    Console.ResetColor();
+                }
+            }
+            
 
 
 
+            while (true)
+            {
+                try
+                {
+                    //Värden från tangetbordet läses in
+                    Console.Write("Ange erhållet belopp: ");
+                    costumersAmount = uint.Parse(Console.ReadLine());
+                    toPay = (uint)Math.Round(totalSum);
+                    if (toPay < totalSum)
+                    {
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.WriteLine("\nErhållet belopp är för litet. Köpet kunde inte genomföras.");
+                        Console.ResetColor();
+                        return;
+                    }
 
-            Console.Write("Ange erhållet belopp: ");
-            costumersAmount = uint.Parse(Console.ReadLine());
-
+                    else 
+                    {
+                        break;
+                    }
+                }
+                catch
+                {
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.WriteLine("\nFel! Erhållet belopp felaktigt.");
+                    Console.ResetColor();
+                }
+            }
             toPay = (uint)Math.Round(totalSum);
             roundingOfAmount = toPay - totalSum;
 
@@ -42,6 +100,14 @@ namespace _1_1_vaxelpengar
             Console.WriteLine("Kontant \t: {0:c0} \t", costumersAmount);
             Console.WriteLine("Tillbaka \t: {0:c0} \t", change);
             Console.WriteLine("---------------------------");
+
+            if (change > 500)
+
+            { 
+                Console.WriteLine"500-lappar\t\t: {0}", 
+            }
         }
     }
 }
+
+
